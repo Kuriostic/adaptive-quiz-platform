@@ -1,0 +1,67 @@
+[
+ {
+  "id": 1,
+  "question": "What does SQL stand for?",
+  "options": [
+   "Structured Query Language",
+   "Sequential Query Language",
+   "Structured Question Language",
+   "Standard Query Link"
+  ],
+  "answerIndex": 0,
+  "difficulty": 1,
+  "explanation": "SQL stands for Structured Query Language, which is the standard language used to communicate with relational database management systems."
+ },
+ {
+  "id": 2,
+  "question": "Which of the following is used to establish a link and enforce a relationship between two tables in a relational database?",
+  "options": [
+   "Primary Key",
+   "Foreign Key",
+   "Candidate Key",
+   "Super Key"
+  ],
+  "answerIndex": 1,
+  "difficulty": 2,
+  "explanation": "A foreign key is a column or group of columns in one table that references the primary key of another table, establishing a relationship between them."
+ },
+ {
+  "id": 3,
+  "question": "In DBMS, which ACID property ensures that all operations within a transaction are completed successfully, or none of them are applied at all?",
+  "options": [
+   "Atomicity",
+   "Consistency",
+   "Isolation",
+   "Durability"
+  ],
+  "answerIndex": 0,
+  "difficulty": 3,
+  "explanation": "Atomicity ensures the 'all-or-nothing' execution of transactions, meaning if any part of the transaction fails, the entire transaction is rolled back."
+ },
+ {
+  "id": 4,
+  "question": "A relation is in Third Normal Form (3NF) but not in Boyce-Codd Normal Form (BCNF) if which of the following conditions holds true?",
+  "options": [
+   "It contains transitive dependencies.",
+   "It contains partial dependencies.",
+   "A non-trivial functional dependency X -> Y exists where X is not a superkey but Y is a prime attribute.",
+   "It has a multi-valued dependency that is not also a functional dependency."
+  ],
+  "answerIndex": 2,
+  "difficulty": 4,
+  "explanation": "BCNF is stricter than 3NF because BCNF requires the determinant X of every non-trivial functional dependency to be a superkey, whereas 3NF relaxes this if the dependent Y is a prime attribute."
+ },
+ {
+  "id": 5,
+  "question": "Which concurrency control protocol guarantees both conflict serializability and freedom from cascading rollbacks (cascadelessness)?",
+  "options": [
+   "Basic Two-Phase Locking (2PL)",
+   "Conservative Two-Phase Locking",
+   "Strict Two-Phase Locking (Strict 2PL)",
+   "Thomas' Write Rule"
+  ],
+  "answerIndex": 2,
+  "difficulty": 5,
+  "explanation": "Strict 2PL prevents cascading rollbacks by holding all exclusive locks obtained by a transaction until that transaction commits or aborts."
+ }
+]

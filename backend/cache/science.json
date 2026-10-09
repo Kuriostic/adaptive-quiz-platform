@@ -1,0 +1,67 @@
+[
+ {
+  "id": 1,
+  "question": "What planet is known as the Red Planet?",
+  "options": [
+   "Earth",
+   "Mars",
+   "Jupiter",
+   "Saturn"
+  ],
+  "answerIndex": 1,
+  "difficulty": 1,
+  "explanation": "Mars is known as the Red Planet because iron oxide on its surface gives it a reddish appearance."
+ },
+ {
+  "id": 2,
+  "question": "What is the primary gas that makes up Earth's atmosphere?",
+  "options": [
+   "Oxygen",
+   "Carbon Dioxide",
+   "Nitrogen",
+   "Hydrogen"
+  ],
+  "answerIndex": 2,
+  "difficulty": 2,
+  "explanation": "Nitrogen is the most abundant gas in Earth's atmosphere, making up approximately 78% of its volume."
+ },
+ {
+  "id": 3,
+  "question": "Which organelle is responsible for cellular respiration and energy production in eukaryotic cells?",
+  "options": [
+   "Nucleus",
+   "Ribosome",
+   "Mitochondrion",
+   "Golgi apparatus"
+  ],
+  "answerIndex": 2,
+  "difficulty": 3,
+  "explanation": "Mitochondria generate most of the cell's supply of adenosine triphosphate (ATP), which is used as a source of chemical energy."
+ },
+ {
+  "id": 4,
+  "question": "What is the value of absolute zero on the Celsius scale?",
+  "options": [
+   "0 °C",
+   "-100 °C",
+   "-273.15 °C",
+   "-459.67 °C"
+  ],
+  "answerIndex": 2,
+  "difficulty": 4,
+  "explanation": "Absolute zero, the lowest limit of the thermodynamic temperature scale, is equivalent to -273.15 degrees Celsius."
+ },
+ {
+  "id": 5,
+  "question": "Which of the following is a composite particle made of three quarks?",
+  "options": [
+   "Electron",
+   "Proton",
+   "Photon",
+   "Muon"
+  ],
+  "answerIndex": 1,
+  "difficulty": 5,
+  "explanation": "A proton is a baryon, which is a type of composite particle made of three valence quarks."
+ }
+]

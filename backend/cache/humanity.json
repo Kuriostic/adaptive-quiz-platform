@@ -1,0 +1,67 @@
+[
+ {
+  "id": 1,
+  "question": "What scientific name is given to modern humans, representing the only surviving species of the genus Homo?",
+  "options": [
+   "Homo erectus",
+   "Homo habilis",
+   "Homo sapiens",
+   "Homo neanderthalensis"
+  ],
+  "answerIndex": 2,
+  "difficulty": 1,
+  "explanation": "Homo sapiens is the binomial nomenclature for the only surviving human species."
+ },
+ {
+  "id": 2,
+  "question": "Which of the following qualities is most widely associated with the concept of 'humanity' in a philosophical and ethical sense?",
+  "options": [
+   "Compulsiveness",
+   "Compassion and benevolence",
+   "Apathy",
+   "Isolationism"
+  ],
+  "answerIndex": 1,
+  "difficulty": 2,
+  "explanation": "In ethics and philosophy, humanity refers to human virtue, particularly love, altruism, and compassion toward others."
+ },
+ {
+  "id": 3,
+  "question": "Approximately how many years ago did modern Homo sapiens first emerge in Africa, according to current paleoanthropological consensus?",
+  "options": [
+   "Around 50,000 years ago",
+   "Around 300,000 years ago",
+   "Around 1 million years ago",
+   "Around 10,000 years ago"
+  ],
+  "answerIndex": 1,
+  "difficulty": 3,
+  "explanation": "Fossil evidence suggests that modern Homo sapiens emerged in Africa approximately 300,000 years ago."
+ },
+ {
+  "id": 4,
+  "question": "In philosophy, secular humanism primarily asserts that moral values and ethical choices should be based on which of the following?",
+  "options": [
+   "Divine revelation and religious dogma",
+   "Strict adherence to legal positivism",
+   "Human reason, science, and empathy",
+   "Purely economic utility and wealth generation"
+  ],
+  "answerIndex": 2,
+  "difficulty": 4,
+  "explanation": "Secular humanism emphasizes human agency, reason, and scientific inquiry rather than religious dogma for ethical decision-making."
+ },
+ {
+  "id": 5,
+  "question": "Which paleontological site provided some of the earliest undisputed evidence of deliberate symbolic behavior and artistic expression (ochre engravings) in early humanity?",
+  "options": [
+   "Lascaux Cave, France",
+   "Blombos Cave, South Africa",
+   "Olduvai Gorge, Tanzania",
+   "Denisova Cave, Russia"
+  ],
+  "answerIndex": 1,
+  "difficulty": 5,
+  "explanation": "Blombos Cave in South Africa contains engraved ochre dating back roughly 75,000 years, representing some of the earliest evidence of abstract art and symbolic behavior in modern humans."
+ }
+]

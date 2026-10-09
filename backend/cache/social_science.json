@@ -1,0 +1,158 @@
+[
+ {
+  "id": 1,
+  "question": "What is the study of human society and social relationships called?",
+  "options": [
+   "Psychology",
+   "Sociology",
+   "Anthropology",
+   "Archaeology"
+  ],
+  "answerIndex": 1,
+  "difficulty": 1,
+  "explanation": "Sociology is the systematic study of society, social institutions, and social relationships."
+ },
+ {
+  "id": 2,
+  "question": "What is the primary term used for the study of how people allocate scarce resources?",
+  "options": [
+   "Sociology",
+   "Political Science",
+   "Economics",
+   "Geography"
+  ],
+  "answerIndex": 2,
+  "difficulty": 1,
+  "explanation": "Economics is the social science that studies the production, distribution, and consumption of goods and services."
+ },
+ {
+  "id": 3,
+  "question": "Who is widely considered one of the founding fathers of sociology and wrote 'The Protestant Ethic and the Spirit of Capitalism'?",
+  "options": [
+   "Karl Marx",
+   "Max Weber",
+   "Emile Durkheim",
+   "Auguste Comte"
+  ],
+  "answerIndex": 1,
+  "difficulty": 2,
+  "explanation": "Max Weber wrote this famous text, which argues that Protestant religious ideas influenced the development of capitalism."
+ },
+ {
+  "id": 4,
+  "question": "What is the term for the process by which an individual learns the traditional culture and behavioral patterns of their society?",
+  "options": [
+   "Acculturation",
+   "Assimilation",
+   "Enculturation",
+   "Globalization"
+  ],
+  "answerIndex": 2,
+  "difficulty": 2,
+  "explanation": "Enculturation is the process by which people learn the dynamics of their surrounding culture and acquire its values and norms."
+ },
+ {
+  "id": 5,
+  "question": "Which political philosophy advocates for a classless society where all property is publicly owned?",
+  "options": [
+   "Capitalism",
+   "Communism",
+   "Fascism",
+   "Feudalism"
+  ],
+  "answerIndex": 1,
+  "difficulty": 2,
+  "explanation": "Communism is a political and economic ideology that aims to establish a society with common ownership of the means of production."
+ },
+ {
+  "id": 6,
+  "question": "What psychological concept describes the tendency for people to perform differently when in the presence of others than when alone?",
+  "options": [
+   "Social facilitation",
+   "Groupthink",
+   "Cognitive dissonance",
+   "Bystander effect"
+  ],
+  "answerIndex": 0,
+  "difficulty": 3,
+  "explanation": "Social facilitation refers to the finding that people sometimes perform better on simple tasks when they are being watched by others."
+ },
+ {
+  "id": 7,
+  "question": "In social science research, what type of variable is manipulated by the researcher to observe its effect on another variable?",
+  "options": [
+   "Dependent variable",
+   "Confounding variable",
+   "Independent variable",
+   "Control variable"
+  ],
+  "answerIndex": 2,
+  "difficulty": 3,
+  "explanation": "The independent variable is the characteristic of an experiment that is manipulated or changed by researchers."
+ },
+ {
+  "id": 8,
+  "question": "Which sociological perspective views society as a complex system whose parts work together to promote solidarity and stability?",
+  "options": [
+   "Conflict theory",
+   "Structural functionalism",
+   "Symbolic interactionism",
+   "Feminist theory"
+  ],
+  "answerIndex": 1,
+  "difficulty": 4,
+  "explanation": "Structural functionalism sees society as a complex system whose parts work together to promote solidarity and stability."
+ },
+ {
+  "id": 9,
+  "question": "What is the Gini coefficient used to measure in social sciences?",
+  "options": [
+   "Economic growth rate",
+   "Income inequality",
+   "Population density",
+   "Inflation rate"
+  ],
+  "answerIndex": 1,
+  "difficulty": 4,
+  "explanation": "The Gini coefficient is a statistical measure of economic inequality in a population, measuring income or wealth distribution."
+ },
+ {
+  "id": 10,
+  "question": "Which demographic term describes the transition from high birth and death rates to low birth and death rates as a country develops?",
+  "options": [
+   "Malthusian catastrophe",
+   "Demographic transition model",
+   "Epidemiologic transition",
+   "Urbanization gradient"
+  ],
+  "answerIndex": 1,
+  "difficulty": 4,
+  "explanation": "The demographic transition model represents the historical shift from high birth and death rates to low birth and death rates in societies."
+ },
+ {
+  "id": 11,
+  "question": "What is the sociological concept of 'habitus', famously developed by Pierre Bourdieu?",
+  "options": [
+   "The physical environment where social interactions take place",
+   "The legally mandated behaviors of a society",
+   "Deeply ingrained habits, skills, and dispositions that individuals possess due to their life experiences",
+   "The psychological state of feeling disconnected from societal norms"
+  ],
+  "answerIndex": 2,
+  "difficulty": 5,
+  "explanation": "Pierre Bourdieu defined habitus as the physical embodiment of cultural capital, consisting of deeply ingrained habits, skills, and dispositions."
+ },
+ {
+  "id": 12,
+  "question": "Which anthropological theory, associated with Bronisław Malinowski, posits that cultural practices and institutions function to meet basic physical or psychological needs of individuals?",
+  "options": [
+   "Historical Particularism",
+   "Structuralism",
+   "Functionalism",
+   "Cultural Materialism"
+  ],
+  "answerIndex": 2,
+  "difficulty": 5,
+  "explanation": "Malinowski's functionalism suggests that cultural institutions exist to satisfy the biological and psychological needs of individual humans."
+ }
+]

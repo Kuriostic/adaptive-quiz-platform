@@ -1,0 +1,158 @@
+[
+ {
+  "id": 1,
+  "question": "What is the main purpose of an operating system?",
+  "options": [
+   "To perform database queries",
+   "To act as an interface between the user and the computer hardware",
+   "To compile high-level code into machine code",
+   "To protect the computer from physical theft"
+  ],
+  "answerIndex": 1,
+  "difficulty": 1,
+  "explanation": "An operating system manages hardware resources and provides a user-friendly interface."
+ },
+ {
+  "id": 2,
+  "question": "Which of the following is an example of an open-source operating system?",
+  "options": [
+   "Windows 11",
+   "macOS",
+   "Linux",
+   "iOS"
+  ],
+  "answerIndex": 2,
+  "difficulty": 1,
+  "explanation": "Linux is open-source, allowing anyone to view, modify, and distribute its source code."
+ },
+ {
+  "id": 3,
+  "question": "What is a 'process' in the context of operating systems?",
+  "options": [
+   "A program in execution",
+   "A physical hardware component",
+   "A compiler error",
+   "A storage sector on a hard drive"
+  ],
+  "answerIndex": 0,
+  "difficulty": 2,
+  "explanation": "A process is defined as an active program currently being executed by the CPU."
+ },
+ {
+  "id": 4,
+  "question": "Which scheduling algorithm allocates the CPU to the process that requests it first?",
+  "options": [
+   "Shortest Job First (SJF)",
+   "Round Robin (RR)",
+   "First-Come, First-Served (FCFS)",
+   "Priority Scheduling"
+  ],
+  "answerIndex": 2,
+  "difficulty": 2,
+  "explanation": "FCFS is a non-preemptive algorithm that executes processes in the order they arrive in the ready queue."
+ },
+ {
+  "id": 5,
+  "question": "What is 'thrashing' in virtual memory management?",
+  "options": [
+   "A high rate of disk I/O because the system is spending more time paging than executing processes",
+   "The process of deleting temporary files to free disk space",
+   "A security attack that floods the CPU with interrupts",
+   "The physical failure of a hard drive read/write head"
+  ],
+  "answerIndex": 0,
+  "difficulty": 3,
+  "explanation": "Thrashing occurs when the system spends more time swapping pages in and out of memory than executing useful instructions."
+ },
+ {
+  "id": 6,
+  "question": "Which of the following conditions is NOT required for a deadlock to occur?",
+  "options": [
+   "Mutual exclusion",
+   "Hold and wait",
+   "Preemption",
+   "Circular wait"
+  ],
+  "answerIndex": 2,
+  "difficulty": 3,
+  "explanation": "No preemption is required for a deadlock; if preemption is allowed, deadlocks can be resolved or prevented."
+ },
+ {
+  "id": 7,
+  "question": "What is the purpose of the Translation Lookaside Buffer (TLB)?",
+  "options": [
+   "To cache page table entries and speed up virtual-to-physical address translation",
+   "To manage network packet transmission queues",
+   "To synchronize read/write access to shared variables",
+   "To act as a secondary buffer during CPU context switching"
+  ],
+  "answerIndex": 0,
+  "difficulty": 3,
+  "explanation": "The TLB is a high-speed hardware cache used to reduce the time taken to access a user memory location."
+ },
+ {
+  "id": 8,
+  "question": "In the Banker's algorithm, what state is the system in if there exists at least one sequence of process executions that does not lead to a deadlock?",
+  "options": [
+   "Safe state",
+   "Unsafe state",
+   "Deadlock state",
+   "Starvation state"
+  ],
+  "answerIndex": 0,
+  "difficulty": 4,
+  "explanation": "A state is safe if the system can allocate resources to each process in some order and still avoid a deadlock."
+ },
+ {
+  "id": 9,
+  "question": "What is the primary difference between a hard real-time system and a soft real-time system?",
+  "options": [
+   "Hard real-time systems use SSDs, while soft real-time systems use HDDs",
+   "Hard real-time systems guarantee that critical tasks complete on time, while soft real-time systems treat deadlines as preferences",
+   "Hard real-time systems are programmed in assembly language, while soft real-time systems use Python",
+   "Hard real-time systems only support single-tasking, while soft real-time systems support multitasking"
+  ],
+  "answerIndex": 1,
+  "difficulty": 4,
+  "explanation": "Hard real-time systems have strict deadlines that must be met to avoid total system failure, whereas soft real-time systems allow occasional deadline misses."
+ },
+ {
+  "id": 10,
+  "question": "Which of the following page replacement algorithms suffers from Belady's anomaly?",
+  "options": [
+   "Least Recently Used (LRU)",
+   "Optimal Page Replacement (OPT)",
+   "First-In, First-Out (FIFO)",
+   "Least Frequently Used (LFU)"
+  ],
+  "answerIndex": 2,
+  "difficulty": 4,
+  "explanation": "Belady's anomaly is a phenomenon where giving a process more page frames results in more page faults, a flaw exhibited by the FIFO algorithm."
+ },
+ {
+  "id": 11,
+  "question": "In a Unix-like operating system, what happens to a parent process when it executes a fork() system call, and what does it return?",
+  "options": [
+   "It duplicates the process, returning 0 to the parent and the child's PID to the child",
+   "It duplicates the process, returning the child's PID to the parent and 0 to the child",
+   "It terminates the parent process and spawns a new process, returning nothing",
+   "It suspends the parent process until the child process calls exec()"
+  ],
+  "answerIndex": 1,
+  "difficulty": 5,
+  "explanation": "The fork() system call returns the process ID of the child to the parent and returns 0 to the newly created child process."
+ },
+ {
+  "id": 12,
+  "question": "Which synchronization primitive can suffer from priority inversion, and how is it typically resolved in modern real-time kernels?",
+  "options": [
+   "Spinlocks; resolved by disabling interrupts",
+   "Semaphores; resolved by using Peterson's algorithm",
+   "Mutexes; resolved by priority inheritance protocol",
+   "Barriers; resolved by thread pooling"
+  ],
+  "answerIndex": 2,
+  "difficulty": 5,
+  "explanation": "Priority inversion occurs when a low-priority thread holds a mutex needed by a high-priority thread, and it is resolved by temporarily elevating the low-priority thread's priority."
+ }
+]

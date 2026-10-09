@@ -1,10 +1,26 @@
 const express = require("express");
+const crypto = require("crypto");
+const fs = require("fs");
+const path = require("path");
+const { updateAbility, pickNext } = require("../utils/adaptive");
+
 const router = express.Router();
 
-const MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
+// .env mein comma se alag kiye hue models, order mein try honge
+const MODELS = (process.env.GEMINI_MODELS || process.env.GEMINI_MODEL || "gemini-3.6-flash")
+  .split(",")
+  .map((m) => m.trim())
+  .filter(Boolean);
 
-async function generateQuestions(topic, count) {
-  const prompt = `Create ${count} multiple-choice questions on the topic "${topic}".
+const CACHE_DIR = path.join(__dirname, "..", "cache");
+fs.mkdirSync(CACHE_DIR, { recursive: true });
+const cachePath = (topic) =>
+  path.join(CACHE_DIR, topic.toLowerCase().replace(/[^a-z0-9]+/g, "_") + ".json");
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function buildPrompt(topic, count) {
+  return `Create ${count} multiple-choice questions on the topic "${topic}".
 Rules:
 - Each question has exactly 4 options.
 - "answerIndex" is the index (0 to 3) of the correct option.
@@ -13,9 +29,11 @@ Rules:
 - "explanation" is one short sentence on why the answer is correct.
 Return ONLY a JSON array in this format:
 [{"question":"...","options":["A","B","C","D"],"answerIndex":0,"difficulty":1,"explanation":"..."}]`;
+}
 
+async function callGemini(model, prompt) {
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
     {
       method: "POST",
       headers: {
@@ -28,20 +46,19 @@ Return ONLY a JSON array in this format:
       }),
     }
   );
-
   if (!res.ok) {
-    throw new Error(`Gemini error ${res.status}: ${await res.text()}`);
+    const err = new Error(`Gemini error ${res.status} (${model})`);
+    err.status = res.status;
+    err.body = (await res.text()).slice(0, 300);
+    throw err;
   }
-
   const data = await res.json();
-  let text = (data.candidates?.[0]?.content?.parts || [])
-    .map((p) => p.text || "")
-    .join("");
-  text = text.replace(/```json|```/g, "").trim();
+  return (data.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+}
 
-  const parsed = JSON.parse(text);
-
-  // sirf valid questions rakho
+function parseQuestions(text) {
+  const parsed = JSON.parse(text.replace(/```json|```/g, "").trim());
+  if (!Array.isArray(parsed)) throw new Error("Response is not an array");
   return parsed
     .filter(
       (q) =>
@@ -62,33 +79,110 @@ Return ONLY a JSON array in this format:
     }));
 }
 
+function saveCache(topic, questions) {
+  try {
+    fs.writeFileSync(cachePath(topic), JSON.stringify(questions, null, 1));
+  } catch (e) {
+    console.error("Cache save failed:", e.message);
+  }
+}
+
+function loadCache(topic, count) {
+  try {
+    const all = JSON.parse(fs.readFileSync(cachePath(topic), "utf8"));
+    if (!Array.isArray(all) || all.length < 3) return null;
+    const sorted = [...all].sort((a, b) => a.difficulty - b.difficulty);
+    const n = Math.min(count, sorted.length);
+    const picked =
+      n === sorted.length
+        ? sorted
+        : Array.from({ length: n }, (_, i) =>
+            sorted[Math.round((i * (sorted.length - 1)) / Math.max(1, n - 1))]
+          );
+    return picked.map((q, i) => ({ ...q, id: i + 1 }));
+  } catch {
+    return null;
+  }
+}
+
+async function generateQuestions(topic, count) {
+    if (process.env.PREFER_CACHE === "true") {
+    const c = loadCache(topic, count);
+    if (c) return { questions: c, source: "cache" };
+  }
+  const prompt = buildPrompt(topic, count);
+  let lastErr;
+
+  for (const model of MODELS) {
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const questions = parseQuestions(await callGemini(model, prompt));
+        if (questions.length < 3) throw new Error("Too few valid questions");
+        saveCache(topic, questions);
+        return { questions, source: model };
+      } catch (e) {
+        lastErr = e;
+        console.error(`[${model}] attempt ${attempt} failed: ${e.message}`, e.body || "");
+        // 400/403/404 = key ya model ka problem, retry bekaar, agle model pe jao
+        const temporary = !e.status || [429, 500, 503].includes(e.status);
+        if (!temporary) break;
+        await sleep(1500);
+      }
+    }
+  }
+
+  const cached = loadCache(topic, count);
+  if (cached) {
+    console.warn(`All models failed, serving cached quiz for "${topic}"`);
+    return { questions: cached, source: "cache" };
+  }
+  throw lastErr || new Error("Question generation failed");
+}
+
+function errorResponse(res, e, fallbackMsg) {
+  console.error(e.message, e.body || "");
+  const busy = e.status === 503 || e.status === 429;
+  res.status(busy ? 503 : 500).json({
+    error: busy ? "The AI service is busy right now. Please try again in a few seconds." : fallbackMsg,
+    details: e.message,
+  });
+}
+
+// ---------- test / pre-warm route (browser mein khol sakte ho) ----------
 async function handler(req, res) {
   const src = req.method === "GET" ? req.query : req.body;
   const topic = (src.topic || "").trim();
   const count = Math.min(parseInt(src.count) || 10, 15);
-
   if (!topic) return res.status(400).json({ error: "topic is required" });
-
   try {
-    const questions = await generateQuestions(topic, count);
-    res.json({ topic, questions });
+    const { questions, source } = await generateQuestions(topic, count);
+    res.json({ topic, source, questions });
   } catch (e) {
-    console.error(e.message);
-    res.status(500).json({ error: "Failed to generate questions", details: e.message });
+    errorResponse(res, e, "Failed to generate questions");
   }
 }
-
-// GET browser test ke liye, POST frontend ke liye
 router.get("/generate", handler);
 router.post("/generate", handler);
 
-const crypto = require("crypto");
-const { updateAbility, pickNext } = require("../utils/adaptive");
+// tere API key pe kaunse models available hain (key bahar expose nahi hoti)
+router.get("/models", async (req, res) => {
+  try {
+    const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=100", {
+      headers: { "x-goog-api-key": process.env.GEMINI_API_KEY },
+    });
+    const d = await r.json();
+    const names = (d.models || [])
+      .filter((m) => (m.supportedGenerationMethods || []).includes("generateContent"))
+      .map((m) => m.name.replace("models/", ""));
+    res.json({ configured: MODELS, available: names });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
-// demo ke liye memory mein sessions (baad mein MongoDB mein jayega)
+// ---------- adaptive quiz sessions ----------
 const sessions = new Map();
 
-// student ko answer aur explanation mat dikhao
 const publicQ = (q) => ({
   id: q.id,
   question: q.question,
@@ -102,10 +196,7 @@ router.post("/start", async (req, res) => {
   if (!topic) return res.status(400).json({ error: "topic is required" });
 
   try {
-    const questions = await generateQuestions(topic, count);
-    if (questions.length < 3) {
-      return res.status(500).json({ error: "Not enough questions generated, try again" });
-    }
+    const { questions, source } = await generateQuestions(topic, count);
     const startAbility = 3;
     const first = pickNext(questions, [], startAbility);
     const sessionId = crypto.randomUUID();
@@ -119,13 +210,13 @@ router.post("/start", async (req, res) => {
     });
     res.json({
       sessionId,
+      source,
       total: questions.length,
       ability: startAbility,
       question: publicQ(first),
     });
   } catch (e) {
-    console.error(e.message);
-    res.status(500).json({ error: "Failed to start quiz", details: e.message });
+    errorResponse(res, e, "Failed to start quiz");
   }
 });
 

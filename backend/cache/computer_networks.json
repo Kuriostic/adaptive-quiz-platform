@@ -1,0 +1,67 @@
+[
+ {
+  "id": 1,
+  "question": "What does LAN stand for in computer networking?",
+  "options": [
+   "Local Access Network",
+   "Local Area Network",
+   "Link Area Network",
+   "Logical Address Network"
+  ],
+  "answerIndex": 1,
+  "difficulty": 1,
+  "explanation": "LAN stands for Local Area Network, which connects computers and devices within a limited geographical area like a home, school, or office."
+ },
+ {
+  "id": 2,
+  "question": "Which protocol is primarily used to securely transfer files over a network?",
+  "options": [
+   "HTTP",
+   "FTP",
+   "SFTP",
+   "SMTP"
+  ],
+  "answerIndex": 2,
+  "difficulty": 2,
+  "explanation": "SFTP (Secure File Transfer Protocol) uses SSH to encrypt the data channel, providing secure file transfer capabilities over a network."
+ },
+ {
+  "id": 3,
+  "question": "At which layer of the OSI model does a router primarily operate?",
+  "options": [
+   "Physical Layer",
+   "Data Link Layer",
+   "Network Layer",
+   "Transport Layer"
+  ],
+  "answerIndex": 2,
+  "difficulty": 3,
+  "explanation": "Routers operate at the Network Layer (Layer 3) to determine the best path for routing packets across different networks using IP addresses."
+ },
+ {
+  "id": 4,
+  "question": "What is the network address for a host with the IP address 192.168.1.55 and a subnet mask of 255.255.255.224?",
+  "options": [
+   "192.168.1.0",
+   "192.168.1.32",
+   "192.168.1.48",
+   "192.168.1.64"
+  ],
+  "answerIndex": 1,
+  "difficulty": 4,
+  "explanation": "The subnet mask 255.255.255.224 creates subnets in blocks of 32, meaning the IP 192.168.1.55 falls into the subnet starting at 192.168.1.32."
+ },
+ {
+  "id": 5,
+  "question": "In TCP congestion control, which state is entered immediately after a packet loss is detected via three duplicate ACKs?",
+  "options": [
+   "Slow Start",
+   "Congestion Avoidance",
+   "Fast Recovery",
+   "Time-Out"
+  ],
+  "answerIndex": 2,
+  "difficulty": 5,
+  "explanation": "Upon receiving three duplicate ACKs, TCP performs a Fast Retransmit and enters Fast Recovery, bypassing the Slow Start phase to maintain high throughput."
+ }
+]
